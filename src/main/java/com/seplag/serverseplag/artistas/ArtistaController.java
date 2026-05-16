@@ -40,7 +40,6 @@ public class ArtistaController {
 
   @PutMapping("/{id}")
   public ResponseEntity atualizarArtista(@PathVariable String id, @RequestBody ArtistaModel artista) {
-      //TODO: process PUT request
       ArtistaModel updtArtista = this.artistaService.atualizarArtista(artista);
       if(updtArtista.getId() != null){
         return ResponseEntity.status(200).body(updtArtista.getId());

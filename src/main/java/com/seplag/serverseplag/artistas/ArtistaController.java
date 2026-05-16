@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 
@@ -35,11 +38,16 @@ public class ArtistaController {
       return ResponseEntity.status(201).body(newArtista);
   }
 
-  @PostMapping("path")
-  public String postMethodName(@RequestBody String entity) {
-      //TODO: process POST request
-      
-      return entity;
+  @PutMapping("/{id}")
+  public ResponseEntity atualizarArtista(@PathVariable String id, @RequestBody ArtistaModel artista) {
+      //TODO: process PUT request
+      ArtistaModel updtArtista = this.artistaService.atualizarArtista(artista);
+      if(updtArtista.getId() != null){
+        return ResponseEntity.status(200).body(updtArtista.getId());
+      }
+      else{
+        return ResponseEntity.status(404).body("Artista não encontrado ");
+      }
   }
   
   @DeleteMapping("/{id}")

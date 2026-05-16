@@ -19,6 +19,17 @@ public class ArtistaService {
     return this.artistaRepository.save(artista);
   }
 
+  public ArtistaModel atualizarArtista(ArtistaModel artista){
+    var existsArtista = this.artistaRepository.findById(artista.getId());
+    if(existsArtista != null && !existsArtista.isEmpty()){
+      ArtistaModel artistaUpdt = this.artistaRepository.save(artista);
+      return artistaUpdt;
+    }
+    else{
+      return new ArtistaModel();
+    }
+  }
+
   public void deleteArtista(Long id){
     var artista = this.artistaRepository.findById(id);
     if(artista.isPresent()){

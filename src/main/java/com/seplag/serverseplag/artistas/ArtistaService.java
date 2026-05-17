@@ -15,6 +15,16 @@ public class ArtistaService {
       return artistaRepository.findAll();
   }
 
+  public ArtistaModel buscarArtista(String id){
+    var artista = this.artistaRepository.findById(Long.parseLong(id));
+    if(artista.isPresent()){
+      return artista.get();
+    }
+    else{
+      return new ArtistaModel();
+    }
+  }
+
   public ArtistaModel criarArtista(ArtistaModel artista){
     return this.artistaRepository.save(artista);
   }

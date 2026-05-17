@@ -31,12 +31,25 @@ public class ArtistaController {
       return ResponseEntity.status(202).body(artistas);
   }
 
+
   @PostMapping("")
   public ResponseEntity criarArtista(@RequestBody ArtistaModel artista) {
       //TODO: process POST request
       var newArtista = this.artistaService.criarArtista(artista);
       return ResponseEntity.status(201).body(newArtista);
   }
+
+  @GetMapping("/{id}")
+  public ResponseEntity getArtista(@PathVariable String id) {
+      ArtistaModel artista = this.artistaService.buscarArtista(id);
+      if(artista != null){
+        return ResponseEntity.status(200).body(artista);
+      }
+      else{
+        return ResponseEntity.status(404).body("Artista não encontrado ");
+      }
+  }
+  
 
   @PutMapping("/{id}")
   public ResponseEntity atualizarArtista(@PathVariable String id, @RequestBody ArtistaModel artista) {

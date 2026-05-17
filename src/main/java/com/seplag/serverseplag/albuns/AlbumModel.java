@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.seplag.serverseplag.artistas.ArtistaModel;
+import com.seplag.serverseplag.capaAlbum.CapaAlbumModel;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,13 +24,24 @@ public class AlbumModel {
   @GeneratedValue(generator = "increment")
   private Long id;
 
+  @jakarta.validation.constraints.NotBlank(message = "O nome do álbum é obrigatório")
   private String nome;
 
-  private LocalDateTime dataPublicacao;
+  private LocalDate dataPublicacao;
+
+  private String descricao;
+
+  private String capaUrl;
+
 
   @ManyToOne
   @JoinColumn(name = "id_artista")
   private ArtistaModel artista;
+
+  @ManyToOne
+  @JoinColumn(name ="idAlbum")
+  private CapaAlbumModel capaAlbum;
+
 
   @CreationTimestamp
   private LocalDateTime createdAt;

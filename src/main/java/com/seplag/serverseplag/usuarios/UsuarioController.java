@@ -19,7 +19,7 @@ public class UsuarioController {
   @Autowired
   private IUsuarioRepository usuarioRepository;
 
-  @PostMapping("/sign-in")
+  @PostMapping("/id")
   public ResponseEntity postMethodName(@RequestBody UsuarioModel usuario) {
       var userLogin = this.usuarioRepository.findByLogin(usuario.getLogin());
       if(userLogin != null) {

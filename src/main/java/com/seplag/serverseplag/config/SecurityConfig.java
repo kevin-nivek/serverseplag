@@ -62,7 +62,7 @@ public class SecurityConfig {
       .anonymous(anonymous -> anonymous.disable()) 
       .authorizeHttpRequests(authorize -> authorize
         .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
-        // .requestMatchers(HttpMethod.GET, "/artistas").permitAll()
+        .requestMatchers(HttpMethod.GET, "/artistas").permitAll()
         .requestMatchers(HttpMethod.GET, "/albuns").permitAll()
         .anyRequest().authenticated()
         
